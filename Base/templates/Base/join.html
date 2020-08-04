@@ -1,0 +1,190 @@
+{% extends 'Base/base.html' %}
+{% load bootstrap4 %}
+{% block css_js %}
+{% endblock %}
+{% block content %}
+        <div class="card"style="max-width:1100px;height: 200px;margin-right: 50px;border-radius:10px;margin-top: 50px; margin-bottom: 50px">
+        <div class="card-header header-elements-inline">
+            {{ message }}
+{#            <a href="add/" class="btn btn-outline-success  " role="button" aria-pressed="true">اضافه کردن</a>#}
+            <h5 class="card-title" >راننده سرویس</h5>
+            <div class="header-elements">
+                <div class="list-icons">
+                    <a class="list-icons-item" data-action="collapse"></a>
+                    <a class="list-icons-item" data-action="reload"></a>
+                    <a class="list-icons-item" data-action="remove"></a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <form method="post" action="#">
+                {% csrf_token %}
+                <table class="table table-striped">
+                    <tr class="table-active">
+                        <th>نام</th>
+                        <th>نام خانوادگی</th>
+                        <th>نام کاربری</th>
+                        <th>ایمیل</th>
+                        <th>موبایل</th>
+                    </tr>
+                        <tr>
+                            <td>{{ driver.user.first_name }}</td>
+                            <td>{{ driver.user.last_name }}</td>
+                            <td>{{ driver.user }}</td>
+                            <td>{{ driver.user.email }}</td>
+                            <td>{{ driver.mobile }}</td>
+                            <script>
+                                function myFunction() {
+                                    if (window.confirm("Do you really want to leave?")) {
+                                        window.location.replace("{{ driver.delete_link }}");
+                                    }
+                                }
+                            </script>
+                        </tr>
+
+                </table>
+            </form>
+        </div>
+    </div>
+        <div class="col-12">
+    <div class="row">
+        <div class="col-sm">
+            <div class="col-12">
+                <div class="card"style="width:100%; height: 700px ;border-radius:10px ">
+                    <div class="card-header header-elements-inline ">
+                        <h5 class="card-title" style="font-size:20px;">لیست دانش آموزان</h5>
+                        <div class="header-elements">
+                            <div class="list-icons">
+                                <a class="list-icons-item" data-action="collapse"></a>
+                                <a class="list-icons-item" data-action="reload"></a>
+                                <a class="list-icons-item" data-action="remove"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="#">
+                            {% csrf_token %}
+                            <table class="table table-sm">
+                            <thead>
+                                <tr class="table-active">
+                                    <th scope="col">نام</th>
+                                    <th scope="col">نام خانوادگی</th>
+                                    <th scope="col">نام کاربری</th>
+                                    <th scope="col">انتخاب</th>
+                                </tr>
+                            </thead>
+                            {%  for item in contents %}
+                                <tr>
+                                    <td>{{ item.user.first_name }}</td>
+                                    <td>{{ item.user.last_name }}</td>
+                                    <td>{{ item.mobile }}</td>
+                                    <td>
+
+                                         <a id="add_student" href="?id={{ item.id }}&action=add" class="btn btn-outline-success" role="button"><i style="color: darkgreen" class="icon-arrow-left16 position-left"></i></a>
+                                    </td>
+                                    <script>
+                                        function myFunction() {
+                                            if (window.confirm("Do you really want to leave?")) {
+                                                window.location.replace("{{ item.delete_link }}");}
+                                        }
+                                    </script>
+                                </tr>
+                            {% endfor %}
+                             <tfoot>
+                                    <tr>
+                                        <td colspan="4">
+                                            <div class="pagination">
+                                                <span class="step-links">
+                                                    {% if contents.has_previous %}
+                                                        <a href="?page=1">&laquo; first</a>
+                                                        <a href="?page={{ contents.previous_page_number }}">previous</a>
+                                                    {% endif %}
+                                                    <span class="current">
+                                                        Page {{ contents.number }} of {{ contents.paginator.num_pages }}.
+                                                    </span>
+                                                    {% if contents.has_next %}
+                                                        <a href="?page={{ contents.next_page_number }}">next</a>
+                                                        <a href="?page={{ contents.paginator.num_pages }}">last &raquo;</a>
+                                                    {% endif %}
+                                                </span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                            </tfoot>
+                        </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="col-12">
+                <div class="card"style="width:100%; height: 700px ;border-radius:10px ">
+                    <div class="card-header header-elements-inline ">
+                        <h5 class="card-title" style="font-size:20px;">لیست دانش آموزان انتخاب شده</h5>
+                        <div class="header-elements">
+                            <div class="list-icons">
+                                <a class="list-icons-item" data-action="collapse"></a>
+                                <a class="list-icons-item" data-action="reload"></a>
+                                <a class="list-icons-item" data-action="remove"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="#">
+                            {% csrf_token %}
+                            <table class="table table-sm">
+                            <thead>
+                                <tr class="table-active">
+                                    <th scope="col">حذف</th>
+                                    <th scope="col">نام</th>
+                                    <th scope="col">نام خانوادگی</th>
+                                    <th scope="col">نام کاربری</th>
+                                </tr>
+                            </thead>
+                            {%  for item in student_choice %}
+                                <tr>
+                                    <td>
+                                         <a id="add_student" href="?id={{ item.id }}&action=dell" class="btn btn-outline-danger" role="button"><i style="color: darkred" class="icon-arrow-right16 position-left"></i></a>
+                                    </td>
+                                    <td>{{ item.student.first_name }}</td>
+                                    <td>{{ item.student.last_name }}</td>
+                                    <td>{{ item.id }}</td>
+                                    <script>
+                                        function myFunction() {
+                                            if (window.confirm("Do you really want to leave?")) {
+                                                window.location.replace("{{ item.delete_link }}");}
+                                        }
+                                    </script>
+                                </tr>
+                            {% endfor %}
+                             <tfoot>
+                                    <tr>
+                                        <td colspan="4">
+                                            <div class="pagination">
+                                                <span class="step-links">
+                                                    {% if contents.has_previous %}
+                                                        <a href="?page=1"><i style="width:10px;color: green " class="icon-first"></i></a>
+                                                        <a href="?page={{ contents.previous_page_number }}"><i style="width:10px;color: green " class="icon-previous"></i></a>
+                                                    {% endif %}
+                                                    <span class="current">
+                                                        Page {{ contents.number }} of {{ contents.paginator.num_pages }}
+                                                    </span>
+                                                    {% if contents.has_next %}
+                                                        <a href="?page={{ contents.next_page_number }}"><i style="width:10px;color: green " class="icon-next"></i></a>
+                                                        <a href="?page={{ contents.paginator.num_pages }}"><i style="width:10px;color: green " class="icon-last"></i></a>
+                                                    {% endif %}
+                                                </span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                            </tfoot>
+                        </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+{% endblock %}

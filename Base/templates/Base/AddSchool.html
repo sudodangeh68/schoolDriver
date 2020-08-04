@@ -1,0 +1,28 @@
+{% extends 'Base/base.html' %}
+{% load bootstrap4 %}
+{% block css_js %}
+{% endblock %}
+{% block content %}
+<!--<div class="card" style="background-color: Gray;border-radius:10px;">-->
+    <div class="card"style="max-width:1100px;height: 700px;margin-right: 50px;border-radius:10px;margin-top: 50px; margin-bottom: 50px">
+        <div class="card-header header-elements-inline">
+            <h5 class="card-title" style="font-size:20px;">مدارس</h5>
+             <h5 style="font-size:20px; color:magenta;">{{ message }}</h5>
+        </div>
+        <div class="card-body">
+            <form method="post" action="#">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                {% buttons %}<br><br>
+                    <p style=" float: left;width:10%">
+                        <a href="/school/" class="btn btn-outline-success" role="button">بازگشت <i style="width:10px;color: green" class="icon-prev position-left"></i></a>
+                    </p>
+                    <p style=" float: right;width: 90%">
+                        <button type="submit" name="student_add" class="btn btn-outline-success">افزودن <i style="width:10px;color: green" class="icon-add position-left"></i></button>
+                    </p>
+                {% endbuttons %}
+            </form>
+        </div>
+    </div>
+<!--</div>-->
+{% endblock%}

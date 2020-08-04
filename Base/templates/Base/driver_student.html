@@ -1,0 +1,74 @@
+{% extends 'Base/base.html' %}
+{% load bootstrap4 %}
+{% block css_js %}
+{% endblock %}
+{% block content %}
+
+    <div class="card" style="max-width:1100px;height: 700px;margin-right: 50px;border-radius:10px;margin-top: 50px; margin-bottom: 50px">
+        <div class="card-header header-elements-inline">
+            <h5 class="card-title" >رانندگان سرویس</h5>
+            <div class="header-elements">
+                <div class="list-icons">
+                    <a class="list-icons-item" data-action="collapse"></a>
+                    <a class="list-icons-item" data-action="reload"></a>
+                    <a class="list-icons-item" data-action="remove"></a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <form method="post" action="#">
+                {% csrf_token %}
+                <table class="table table-striped">
+                    <tr class="table-active">
+                        <th>نام</th>
+                        <th>نام خانوادگی</th>
+                        <th>نام کاربری</th>
+                        <th>ایمیل</th>
+                        <th>موبایل</th>
+                        <th>نام مدرسه</th>
+                        <th>تخصیص</th>
+                    </tr>
+                    {%  for item in driver %}
+                        <tr>
+                            <td>{{ item.user.first_name }}</td>
+                            <td>{{ item.user.last_name }}</td>
+                            <td>{{ item.user }}</td>
+                            <td>{{ item.user.email }}</td>
+                            <td>{{ item.mobile }}</td>
+                            <td>{{ item.id }}</td>
+                            <td>
+                                <a href="/join/?add={{ item.id }}" class="btn btn-outline-success" role="button"
+                                   aria-pressed="true"><i style="color: green" class="icon-add"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                        <tfoot>
+                        <tr>
+                            <td colspan="4">
+                                <div class="pagination">
+                                    <span class="step-links">
+                                        {% if page_obj.has_previous %}
+                                            <a href="?page=1">&laquo; first</a>
+                                            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                                        {% endif %}
+                                        <span class="current">
+                                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                                        </span>
+                                        {% if page_obj.has_next %}
+                                            <a href="?page={{ page_obj.next_page_number }}">next</a>
+                                            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                                        {% endif %}
+                                    </span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+

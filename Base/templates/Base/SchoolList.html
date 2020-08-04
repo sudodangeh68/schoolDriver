@@ -1,0 +1,94 @@
+{% extends 'Base/base.html' %}
+{% load bootstrap4 %}
+{% block css_js %}
+{% endblock %}
+{% block content %}
+<!--<div class="card" style="background-color: #2E8B57;border-radius:10px;">-->
+    <div class="card"style="max-width:2000px;height: 700px;margin-right: 10px;border-radius:10px;margin-top: 50px; margin-bottom: 50px">
+        <div class="card-header header-elements-inline">
+            {{ message }}
+            <a href="add/" class="btn btn-outline-success  " role="button" aria-pressed="true">افزودن</a>
+            <h5 class="card-title" style="font-size: xx-large; color: #556b2f">لیست مدارس</h5>
+
+            <div class="header-elements">
+                <div class="list-icons">
+                    <a class="list-icons-item" data-action="collapse"></a>
+                    <a class="list-icons-item" data-action="reload"></a>
+                    <a class="list-icons-item" data-action="remove"></a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <form method="post" action="#">
+                {% csrf_token %}
+                <table class="table table-striped">
+                    <tr class="table-active">
+                        <th>نام مدرسه</th>
+                        <th>نام مدیر</th>
+                        <th>تلفن مدرسه</th>
+                        <th>لوکیشن</th>
+                        <th>تغییرات</th>
+                        <td>افزودن</td>
+                    </tr>
+                    {%  for item in contents %}
+                        <tr>
+                            <td>{{ item.name_school }}</td>
+                            <td>
+                                {% for i in master %}
+                                    {% if i.school_id == item.id %}
+                                        {{i.user.last_name}}
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td>{{ item.mobile_school }}</td>
+                            <td>{{ item.lat }}{{ "-" }}{{ item.lng }}</td>
+
+                            <td>
+                                <a href="{{ item.delete_link }}"  role="button" aria-pressed="true"
+                                   onclick="return confirm('Are you sure?')"><i style="color: #c71585" class="icon-trash position-left"></i></a>
+                                <a href="{{ item.update_link }}"  role="button"
+                                   aria-pressed="true" ><i style="color: green" class="icon-pencil position-left"></i></a>
+
+                            </td>
+                            <td>
+                                <a href="/parent-school/?schoolID={{ item.id }}" class="btn btn-outline-success" role="button">والدین <i style="width:10px;color:green " class="icon-users4 position-left"></i></a>
+                                <a href="/headmaster/add/?schoolID={{ item.id }}" class="btn btn-outline-success" role="button">مدیر/ادمین <i style="width:10px;color:green  " class="icon-user position-left"></i></a>
+                                <a href="/student/?schoolID={{ item.id }}" class="btn btn-outline-success" role="button">دانش آموزان<i style="width:10px;color:green " class="icon-users4 position-left"></i></a>
+                                <a href="/driver/add/?schoolID={{ item.id }}" class="btn btn-outline-success" role="button">رانندگان<i style="width:10px;color: green " class="icon-car position-left"></i></a>
+                            </td>
+                            <script>
+                                function myFunction() {
+                                    if (window.confirm("Do you really want to leave?")) {
+                                        window.location.replace("{{ item.delete_link }}");
+                                    }
+                                }
+                            </script>
+                        </tr>
+                    {% endfor %}
+                    <tfoot>
+                        <tr>
+                            <td colspan="4">
+                                <div class="pagination">
+                                    <span class="step-links">
+                                        {% if contents.has_previous %}
+                                            <a href="?page=1"><i style="width:10px;color: green " class="icon-first"></i></a>
+                                            <a href="?page={{ contents.previous_page_number }}"><i style="width:10px;color: green " class="icon-previous"></i></a>
+                                        {% endif %}
+                                        <span class="current">
+                                            Page {{ contents.number }} of {{ contents.paginator.num_pages }}
+                                        </span>
+                                        {% if contents.has_next %}
+                                            <a href="?page={{ contents.next_page_number }}"><i style="width:10px;color: green " class="icon-next"></i></a>
+                                            <a href="?page={{ contents.paginator.num_pages }}"><i style="width:10px;color: green " class="icon-last"></i></a>
+                                        {% endif %}
+                                    </span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </form>
+        </div>
+    </div>
+<!--</div>-->
+{% endblock%}

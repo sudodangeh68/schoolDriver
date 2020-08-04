@@ -1,0 +1,214 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Limitless - Responsive Web Application Kit by Eugene Kopyov</title>
+
+	<!-- Global stylesheets -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+	<link href="{% static "Base/global_assets/css/icons/icomoon/styles.min.css" %}" rel="stylesheet" type="text/css">
+	<link href="{% static "Base/assets/css/bootstrap.min.css" %}" rel="stylesheet" type="text/css">
+	<link href="{% static "Base/assets/css/bootstrap_limitless.min.css" %}" rel="stylesheet" type="text/css">
+	<link href="{% static "Base/assets/css/layout.min.css" %}" rel="stylesheet" type="text/css">
+	<link href="{% static "Base/assets/css/components.min.css" %}" rel="stylesheet" type="text/css">
+	<link href="{% static "Base/assets/css/colors.min.css" %}" rel="stylesheet" type="text/css">
+	<link href="{% static "Base/assets/style.css" %}" rel=background-color"stylesheet" type="text/css">
+	<!-- /global stylesheets -->
+
+	<!-- Core JS files -->
+	<script src="{% static "Base/global_assets/js/main/jquery.min.js" %}"></script>
+	<script src="{% static "Base/global_assets/js/main/bootstrap.bundle.min.js" %}"></script>
+	<script src="{% static "Base/global_assets/js/plugins/loaders/blockui.min.js" %}"></script>
+	<script src="{% static "Base/global_assets/js/plugins/ui/ripple.min.js" %}"></script>
+	<script src="https://kit.fontawesome.com/e6d75722bb.js"></script>
+	<!-- /core JS files -->
+
+	<!-- Theme JS files -->
+	<script src="{% static "Base/assets/js/app.js" %}"></script>
+	<!-- /theme JS files -->
+
+</head>
+
+<body style="background-color: #00695c">
+
+	<!-- Main navbar -->
+	<div class="navbar navbar-expand-md navbar-light navbar-static">
+
+		<!-- Header with logos -->
+		<div class="navbar-header d-none d-md-flex align-items-md-center" style="background-color: #00695c">
+			<div class="navbar-brand navbar-brand-md">
+				<a href="../full/index.html" class="d-inline-block">
+
+{#					<img src="{% static "Base/global_assets/images/logo_light.png" %}" alt="">#}
+				</a>
+			</div>
+
+			<div class="navbar-brand navbar-brand-xs">
+{#				<a href="../full/index.html" class="d-inline-block">#}
+
+{#					<img src="{% static "Base/global_assets/images/logo_icon_light.png" %}" alt="">#}
+{#				</a>#}
+			</div>
+		</div>
+		<!-- /header with logos -->
+
+
+		<!-- Mobile controls -->
+		<div class="d-flex flex-1 d-md-none">
+			<div class="navbar-brand mr-auto">
+				<a href="../full/index.html" class="d-inline-block">
+					<img src="{% static "Base/global_assets/images/logo_dark.png" %}" alt="">
+				</a>
+			</div>
+
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-mobile">
+				<i class="icon-tree5"></i>
+			</button>
+
+			<button class="navbar-toggler sidebar-mobile-main-toggle" type="button">
+				<i class="icon-paragraph-justify3"></i>
+			</button>
+		</div>
+		<!-- /mobile controls -->
+
+
+		<!-- Navbar content -->
+		<div class="collapse navbar-collapse" id="navbar-mobile" style="background-color: #1f877d">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a href="#" class="navbar-nav-link sidebar-control sidebar-main-toggle d-none d-md-block" style="color: white">
+						<i class="icon-paragraph-justify3"></i>
+					</a>
+				</li>
+
+				<li class="nav-item">
+					<a href="#" class="navbar-nav-link" style="color: white">{{ message }}</a>
+				</li>
+
+				<li class="nav-item dropdown">
+					<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown" style="color: white">Menu</a>
+
+					<div class="dropdown-menu">
+						<a href="#" class="dropdown-item">Action</a>
+						<a href="#" class="dropdown-item">Another action</a>
+						<a href="#" class="dropdown-item">One more action</a>
+						<div class="dropdown-divider"></div>
+						<a href="#" class="dropdown-item">Separate action</a>
+					</div>
+				</li>
+			</ul>
+
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+
+					<a href="#" class="navbar-nav-link" style="color: white">Text link</a>
+				</li>
+
+				<li class="nav-item dropdown">
+					<a href="#" class="navbar-nav-link" style="color: white">
+						<i class="icon-bell2"></i>
+						<span class="d-md-none ml-2" style="color: white">Notifications</span>
+						<span class="badge badge-mark border-white"></span>
+					</a>
+				</li>
+
+				<li class="nav-item dropdown dropdown-user">
+					<a href="#" class="navbar-nav-link d-flex align-items-center dropdown-toggle" data-toggle="dropdown" style="color: white">
+						<img src="{% static "Base/global_assets/images/bus.png" %}" class="rounded-circle mr-2" height="34" alt="">
+						<span>Victoria</span>
+					</a>
+
+					<div class="dropdown-menu dropdown-menu-right">
+						<a href="#" class="dropdown-item"><i class="icon-user-plus"></i> پروفایل</a>
+						<a href="#" class="dropdown-item"><i class="icon-coins"></i> My balance</a>
+						<a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> پیام ها <span class="badge badge-pill bg-blue ml-auto">58</span></a>
+						<div class="dropdown-divider"></div>
+						<a href="/password" class="dropdown-item"><i class="icon-cog5"></i> تنظیمات</a>
+						<a href="/" class="dropdown-item"><i class="icon-switch2"></i> خروج</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<!-- /navbar content -->
+
+	</div>
+	<!-- /main navbar -->
+
+
+	<!-- Page content -->
+	<div class="page-content">
+
+		<!-- Main sidebar -->
+{% include "Base/side_panel.html" %}
+		<!-- /main sidebar -->
+
+
+		<!-- Main content -->
+		<div class="content-wrapper">
+
+			<!-- Page header -->
+			<div class="page-header">
+				{% block page_header %}
+                {% endblock %}
+			</div>
+			<!-- /page header -->
+
+
+			<!-- Content area -->
+			<div class="content pt-0">
+                {% block content %}
+                {% endblock %}
+			</div>
+			<!-- /content area -->
+
+
+			<!-- Footer -->
+{#			<div class="navbar navbar-expand-lg navbar-light">#}
+{#				<div class="text-center d-lg-none w-100">#}
+{#					<button type="button" class="navbar-toggler dropdown-toggle" data-toggle="collapse" data-target="#navbar-footer">#}
+{#						<i class="icon-unfold mr-2"></i>#}
+{#						Footer#}
+{#					</button>#}
+{#				</div>#}
+{##}
+{#				<div class="navbar-collapse collapse" id="navbar-footer">#}
+{#					<span class="navbar-text">#}
+{#						&copy; 2015 - 2018. <a href="#">Limitless Web App Kit</a> by <a href="http://themeforest.net/user/Kopyov" target="_blank">Eugene Kopyov</a>#}
+{#					</span>#}
+{##}
+{#					<ul class="navbar-nav ml-lg-auto">#}
+{#						<li class="nav-item">#}
+{#							<a href="#" class="navbar-nav-link">Text link</a>#}
+{#						</li>#}
+{##}
+{#						<li class="nav-item">#}
+{#							<a href="#" class="navbar-nav-link">#}
+{#								<i class="icon-lifebuoy"></i>#}
+{#							</a>#}
+{#						</li>#}
+{##}
+{#						<li class="nav-item">#}
+{#							<a href="https://themeforest.net/item/limitless-responsive-web-application-kit/13080328?ref=kopyov" class="navbar-nav-link font-weight-semibold">#}
+{#								<span class="text-pink-400">#}
+{#									<i class="icon-cart2 mr-2"></i>#}
+{#									Purchase#}
+{#								</span>#}
+{#							</a>#}
+{#						</li>#}
+{#					</ul>#}
+{#				</div>#}
+{#			</div>#}
+			<!-- /footer -->
+
+		</div>
+		<!-- /main content -->
+
+	</div>
+	<!-- /page content -->
+
+</body>
+</html>

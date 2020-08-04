@@ -1,0 +1,134 @@
+{% load static %}
+		<div class="sidebar sidebar-main sidebar-expand-md" style="background-color: #004d40">
+
+			<!-- Sidebar mobile toggler -->
+			<div class="sidebar-mobile-toggler text-center">
+				<a href="#" class="sidebar-mobile-main-toggle">
+					<i class="icon-arrow-left8"></i>
+				</a>
+				Navigation
+				<a href="#" class="sidebar-mobile-expand">
+					<i class="icon-screen-full"></i>
+					<i class="icon-screen-normal"></i>
+				</a>
+			</div>
+			<!-- /sidebar mobile toggler -->
+
+
+			<!-- Sidebar content -->
+			<div class="sidebar-content">
+
+				<!-- User menu -->
+				<div class="sidebar-user-material">
+					<div class="sidebar-user-material-body">
+						<div class="card-body text-center">
+							<a href="#">
+								<img src="{% static "Base/global_assets/images/bus.png"%}" width="110" height="110" alt="">
+							</a>
+							<h6 class="mb-0 text-white text-shadow-dark">سرویس مدارس</h6>
+							<span class="font-size-sm text-white text-shadow-dark"></span>
+						</div>
+
+						<div class="sidebar-user-material-footer">
+							<a href="#user-nav" class="d-flex justify-content-between align-items-center text-shadow-dark dropdown-toggle" data-toggle="collapse"><span>Navigation</span></a>
+						</div>
+					</div>
+
+					<div class="collapse" id="user-nav">
+						<ul class="nav nav-sidebar">
+							<li class="nav-item">
+								<a href="#" class="nav-link" style="color: white">
+									<i class="icon-user-plus"></i>
+									<span>پروفایل</span>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link" style="color: white">
+									<i class="icon-coins"></i>
+									<span>My balance</span>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link" style="color: white">
+									<i class="icon-comment-discussion"></i>
+									<span>پیام ها</span>
+									<span class="badge bg-teal-400 badge-pill align-self-center ml-auto">58</span>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="/password" class="nav-link" style="color: white">
+									<i class="icon-cog5"></i>
+									<span>تنظیمات</span>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="/" class="nav-link" style="color: white">
+									<i class="icon-switch2"></i>
+									<span>خروج</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /user menu -->
+
+
+				<!-- Main navigation -->
+				<div class="card card-sidebar-mobile">
+					<ul class="nav nav-sidebar" data-nav-type="accordion">
+
+						<!-- Main -->
+						<li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs" style="color: white">Main</div> <i class="icon-menu" title="Main"></i></li>
+						<li class="nav-item">
+							<a href="/home" class="nav-link">
+								<i class="icon-home4" style="color: white"></i>
+								<span style="color: white">خانه</span>
+							</a>
+						</li>
+						<li class="nav-item nav-item-submenu nav-item-expanded nav-item-open">
+							<a href="#" class="nav-link" style="color: white"><i class="icon-stack" ></i> <span>Starter kit</span></a>
+
+							<ul class="nav nav-group-sub" data-submenu-title="Starter kit">
+								<li class="nav-item"><a href="../seed/layout_nav_horizontal.html" class="nav-link" style="color: white">Horizontal navigation</a></li>
+								<li class="nav-item nav-item-submenu">
+									<a href="#" class="nav-link" style="color: white">افزودن</a>
+									<ul class="nav nav-group-sub">
+										<li class="nav-item"><a href="/school/" class="nav-link" style="color: white">مدرسه</a></li>
+										<li class="nav-item"><a href="/headmaster/" class="nav-link" style="color: white">مدیر</a></li>
+                                        <li class="nav-item"><a href="/parent/" class="nav-link" style="color: white">والدین</a></li>
+                                        <li class="nav-item"><a href="/student/" class="nav-link" style="color: white">دانش آموز</a></li>
+                                        <li class="nav-item"><a href="/driver/" class="nav-link" style="color: white">راننده سرویس</a></li>
+									</ul>
+								</li>
+								<li class="nav-item nav-item-submenu">
+									<a href="#" class="nav-link" style="color: white">Content sidebars</a>
+									<ul class="nav nav-group-sub">
+										<li class="nav-item"><a href="../seed/sidebar_content_left.html" class="nav-link" style="color: white">Left sidebar</a></li>
+										<li class="nav-item"><a href="../seed/sidebar_content_right.html" class="nav-link" style="color: white">Right sidebar</a></li>
+									</ul>
+								</li>
+								<li class="nav-item"><a href="/join/" class="nav-link" style="color: white">تخصیص راننده</a></li>
+								<li class="nav-item-divider"></li>
+								<li class="nav-item"><a href="../seed/navbar_fixed_main.html" class="nav-link" style="color: white">Fixed main navbar</a></li>
+								<li class="nav-item"><a href="../seed/navbar_fixed_secondary.html" class="nav-link" style="color: white">Fixed secondary navbar</a></li>
+								<li class="nav-item"><a href="../seed/navbar_fixed_both.html" class="nav-link" style="color: white">Both navbars fixed</a></li>
+								<li class="nav-item"><a href="../seed/layout_fixed.html" class="nav-link" style="color: white">Fixed layout</a></li>
+							</ul>
+						</li>
+						<li class="nav-item">
+							<a href="../full/changelog.html" class="nav-link">
+								<i class="icon-list-unordered"></i>
+								<span style="color: white">Changelog</span>
+								<span class="badge bg-blue-400 align-self-center ml-auto">2.2</span>
+							</a>
+						</li>
+						<!-- /main -->
+
+					</ul>
+				</div>
+				<!-- /main navigation -->
+
+			</div>
+			<!-- /sidebar content -->
+
+		</div>

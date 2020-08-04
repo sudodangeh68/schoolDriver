@@ -1,0 +1,135 @@
+{% extends 'Base/base.html' %}
+{% load bootstrap4 %}
+{% block css_js %}
+{% endblock %}
+{% block content %}
+
+<!--<div class="card" style="background-color: Gray">-->
+    <div class="row col-sm-auto">
+        <div class="col-12">
+            <div class="card" style="width:101.5%;border-radius:10px;height: 200px; margin-top: 20px">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title" style="font-size:25px; "><b>والدین</b></h5><br>
+                     <h5 style="font-size:20px; color:magenta;">{{ messageParent }}</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="#">
+                {% csrf_token %}
+                <table class="table table-striped">
+                    <tr>
+                        <th>نام</th>
+                        <th>نام خانوادگی</th>
+                        <th>نام کاربری</th>
+                        <th>ایمیل</th>
+                        <th>موبایل</th>
+                        <th>نام مدرسه</th>
+                    </tr>
+                        <tr >
+                            <td>{{ parent.user.first_name }}</td>
+                            <td>{{ parent.user.last_name }}</td>
+                            <td>{{ parent.user }}</td>
+                            <td>{{ parent.user.email }}</td>
+                            <td>{{ parent.mobile }}</td>
+                            <td>{{ parent.school.name_school}}</td>
+                        </tr>
+                </table>
+            </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm" >
+            <div class="col-12" >
+                <div class="card" style="width:103%;max-width:600px;height: 700px;border-radius:10px">
+                    <div class="card-header header-elements-inline">
+                        <h5 class="card-title" style="font-size:20px;">دانش آموز</h5>
+                        <h5 style="font-size:20px; color:magenta;">{{ messageStudent }}</h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="#">
+                            {% csrf_token %}
+                            {% bootstrap_form form %}
+                            {% buttons %}
+                                <p style="text-align: left;">
+                                <button type="submit" name="student_add" class="btn btn-outline-success">افزودن</button>
+                                </p>
+                            {% endbuttons %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="col-12">
+                <div class="card"style="width:100%;width:700px;height: 700px ;border-radius:10px ">
+                    <div class="card-header header-elements-inline ">
+                        <h5 class="card-title" style="font-size:20px;">لیست دانش آموزان شما</h5>
+                        <div class="header-elements">
+                            <div class="list-icons">
+                                <a class="list-icons-item" data-action="collapse"></a>
+                                <a class="list-icons-item" data-action="reload"></a>
+                                <a class="list-icons-item" data-action="remove"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="#">
+                            {% csrf_token %}
+                            <table class="table table-sm">
+                            <thead>
+                                <tr class="table-active">
+                                    <th scope="col"> نام و نام خانوادگی</th>
+                                    <th scope="col">نام کاربری</th>
+                                    <th scope="col">تغییرات</th>
+                                </tr>
+                            </thead>
+                            {%  for item in contents %}
+                                <tr>
+                                    <td>{{ item.user_student.name }}</td>
+                                    <td>{{ item.id }}</td>
+                                    <td>
+                                         <a href="{{ item.user.delete_link }}" class="btn btn-outline-danger" role="button"
+                                               aria-pressed="true" onclick="return confirm('Are you sure?')"><i style="color: darkred" class="icon-trash position-left"></i></a></a>
+                                         <a href="{{ item.user.update_link }}" class="btn btn-outline-success" role="button"><i style="color: greenyellow" class="icon-pencil position-left"></i></a>
+                                    </td>
+                                    <script>
+                                        function myFunction() {
+                                            if (window.confirm("Do you really want to leave?")) {
+                                                window.location.replace("{{ item.delete_link }}");}
+                                        }
+                                    </script>
+                                </tr>
+                            {% endfor %}
+                             <tfoot>
+                                <tr>
+                                    <td colspan="4">
+                                        <div class="pagination">
+                                            <span class="step-links">
+                                                {% if contents.has_previous %}
+                                                    <a href="?page=1"><i style="width:10px;color: green " class="icon-first"></i></a>
+                                                    <a href="?page={{ contents.previous_page_number }}"><i style="width:10px;color: green " class="icon-previous"></i></a>
+                                                {% endif %}
+                                                <span class="current">
+                                                    Page {{ contents.number }} of {{ contents.paginator.num_pages }}
+                                                </span>
+                                                {% if contents.has_next %}
+                                                    <a href="?page={{ contents.next_page_number }}"><i style="width:10px;color: green " class="icon-next"></i></a>
+                                                    <a href="?page={{ contents.paginator.num_pages }}"><i style="width:10px;color: green " class="icon-last"></i></a>
+                                                {% endif %}
+                                            </span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--</div>-->
+
+{% endblock%}
+

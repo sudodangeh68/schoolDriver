@@ -1,0 +1,81 @@
+{% extends 'Base/base.html' %}
+{% load bootstrap4 %}
+{% block css_js %}
+{% endblock %}
+{% block content %}
+<!--<div class="card" style="background-color: Gray;border-radius:10px;">-->
+    <div class="card"style="max-width:1100px;height: 700px;margin-right: 50px;border-radius:10px;margin-top: 50px; margin-bottom: 50px">
+        <div class="card-header header-elements-inline">
+            {{ message }}
+            <a href="add/" class="btn btn-outline-success  " role="button" aria-pressed="true">اضافه کردن</a>
+            <h5 class="card-title" >والدین</h5>
+            <div class="header-elements">
+                <div class="list-icons">
+                    <a class="list-icons-item" data-action="collapse"></a>
+                    <a class="list-icons-item" data-action="reload"></a>
+                    <a class="list-icons-item" data-action="remove"></a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <form method="post" action="#">
+                {% csrf_token %}
+                <table class="table table-striped">
+                    <tr class="table-active">
+                        <th>نام</th>
+                        <th>نام خانوادگی</th>
+                        <th>نام کاربری</th>
+                        <th>ایمیل</th>
+                        <th>موبایل</th>
+                        <th>نام مدرسه</th>
+                        <th>تغییرات</th>
+                    </tr>
+                    {%  for item in contents %}
+                        <tr>
+                            <td>{{ item.user.first_name }}</td>
+                            <td>{{ item.user.last_name }}</td>
+                            <td>{{ item.user }}</td>
+                            <td>{{ item.user.email }}</td>
+                            <td>{{ item.mobile }}</td>
+                            <td>{{ item.id }}</td>
+                            <td>
+                                 <a href="{{ item.delete_link }}" class="btn btn-outline-danger" role="button"
+                                   aria-pressed="true" onclick="return confirm('Are you sure?')"><i style="color: darkred" class="icon-trash position-left"></i></a>
+                                <a href="{{ item.update_link }}" class="btn btn-outline-success" role="button"><i style="color: greenyellow" class="icon-pencil position-left"></i></a>
+                            </td>
+                            <script>
+                                function myFunction() {
+                                    if (window.confirm("Do you really want to leave?")) {
+                                        window.location.replace("{{ item.delete_link }}");
+                                    }
+                                }
+                            </script>
+                        </tr>
+                    {% endfor %}
+                        <tfoot>
+                            <tr>
+                                <td colspan="4">
+                                    <div class="pagination">
+                                        <span class="step-links">
+                                            {% if contents.has_previous %}
+                                                <a href="?page=1"><i style="width:10px;color: green " class="icon-first"></i></a>
+                                                <a href="?page={{ contents.previous_page_number }}"><i style="width:10px;color: green " class="icon-previous"></i></a>
+                                            {% endif %}
+                                            <span class="current">
+                                                Page {{ contents.number }} of {{ contents.paginator.num_pages }}
+                                            </span>
+                                            {% if contents.has_next %}
+                                                <a href="?page={{ contents.next_page_number }}"><i style="width:10px;color: green " class="icon-next"></i></a>
+                                                <a href="?page={{ contents.paginator.num_pages }}"><i style="width:10px;color: green " class="icon-last"></i></a>
+                                            {% endif %}
+                                        </span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                </table>
+            </form>
+        </div>
+    </div>
+<!--</div>-->
+{% endblock%}
