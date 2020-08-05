@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from Base.models import *
 from django.shortcuts import render
 from rest_framework import status
 from rest_framework.parsers import JSONParser
@@ -48,7 +49,10 @@ class UserList(APIView):
     """
 
     def get(self, request, format=None):
-        snippets = User.objects.filter()
+        snippets = Student.objects.filter()
+        #--------
+
+        #--------
         serializer = UserSerializer(snippets, many=True)
         return Response(serializer.data)
 

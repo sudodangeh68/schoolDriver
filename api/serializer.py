@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from Base.models import *
 from django.http import JsonResponse
 from rest_framework import serializers, renderers
 
@@ -47,7 +48,22 @@ class DriverStudentResponse(serializers.Serializer):
     username = serializers.CharField(max_length=100)
 
 
+class PositionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Position
+        fields = '__all__'
+
+
+class DestinationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Destination
+        fields = '__all__'
+
+
 class UserSerializer(serializers.ModelSerializer):
+    position = PositionSerializer()
+    location = DestinationSerializer()
+
     # TODO: add userprofile ot mode
 
     """
@@ -55,8 +71,8 @@ class UserSerializer(serializers.ModelSerializer):
     """
 
     class Meta:
-        model = User
-        fields = ['first_name', 'last_name', 'email', 'username', 'password']
+        model = Student
+        fields = ['name', 'className', 'position', 'location']
 
 # class UserSerializer1(serializers.Serializer):
 #     email = serializers.CharField()

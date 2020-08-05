@@ -367,16 +367,16 @@ class AddStudent(View):
                                                       latitudeDelta=cd["latitudeDelta"],
                                                       longitudeDelta=cd["longitudeDelta"],
                                                       is_active=cd["is_active"])
-                # position = Position.objects.create(title=cd["title"], bus_to_home=cd["latitude"],
-                #                                    bus_to_school=cd["longitude"],
-                #                                    home_to_bus=cd["latitudeDelta"],
-                #                                    school_to_bus=cd["longitudeDelta"],
-                #                                    status=cd["is_active"])
+                position_student = Position.objects.create(bus_to_home=None,
+                                                           bus_to_school=None,
+                                                           home_to_bus=None,
+                                                           school_to_bus=None,
+                                                           status=None)
                 school_parent = UserProfile.objects.get(user_id=request.GET["display"])
                 student = Student.objects.create(name=cd["name"], className=cd["className"],
-                                                 school=school_parent.school, location=location)
+                                                 school=school_parent.school, location=location, position=position_student)
                 ParentsStudent.objects.create(user_student=student, student_id=student.id,
-                                              parents_id=request.GET["display"],
+                                              parents_id=request.GET["display"]
                                               )
             else:
                 message = "ارتباط شما با دانش آموز برقرار نشد"

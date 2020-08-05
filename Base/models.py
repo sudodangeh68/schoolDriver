@@ -43,25 +43,25 @@ class Trip(models.Model):
     pass
 
 
+class Position(models.Model):
+    # status_TYPE = (
+    #     (1, "حاضر"),
+    #     (2, "غایب"),
+    # )
+    bus_to_home = models.CharField(max_length=50, null=True)  # Date and time of student entry and exit
+    bus_to_school = models.CharField(max_length=50, null=True)
+    home_to_bus = models.CharField(max_length=50, null=True)
+    school_to_bus = models.CharField(max_length=50, null=True)
+    status = models.CharField(max_length=50, null=True)
+
+
 class Student(models.Model):
     name = models.CharField(max_length=100)
     image = models.ImageField(null=True)
     className = models.CharField(null=True, max_length=100)
     school = models.ForeignKey(School, related_name="SSt_users_id", on_delete=models.CASCADE)
     location = models.ForeignKey(Destination, related_name="DSt_users_id", on_delete=models.CASCADE)
-
-
-class Position(models.Model):
-    status_TYPE = (
-        (1, "حاضر"),
-        (2, "غایب"),
-    )
-    bus_to_home = models.CharField(max_length=50, null=True)  # Date and time of student entry and exit
-    bus_to_school = models.CharField(max_length=50, null=True)
-    home_to_bus = models.CharField(max_length=50, null=True)
-    school_to_bus = models.CharField(max_length=50, null=True)
-    status = models.SmallIntegerField(choices=status_TYPE)
-    student = models.ForeignKey(Student, related_name="PSt_users_id", on_delete=models.CASCADE)
+    position = models.ForeignKey(Position, related_name="StP_users_id", on_delete=models.CASCADE)
 
 
 class DriverStudent(models.Model):
